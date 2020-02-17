@@ -1,16 +1,11 @@
-import javax.sound.midi.Soundbank;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
 
-
-        UserSet allUsers = new UserSet();
-        MainMenu mainMenu = new MainMenu(allUsers);
-        Login login = new Login(allUsers);
+        UserSet allUsers = UserSet.getInstance();
+        MainMenu mainMenu = MainMenu.getInstance(allUsers);
+        Login login = Login.getInstance(allUsers);
         boolean isNotQuit = true;
 
         Login.showWelcome();

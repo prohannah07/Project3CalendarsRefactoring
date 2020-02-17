@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Project3CalendarsRefactoring:jar">
+    <output-path>$PROJECT_DIR$/Project2Calendars/out/artifacts/Project3CalendarsRefactoring_jar</output-path>
+    <root id="archive" name="Project3CalendarsRefactoring.jar">
+      <element id="module-output" name="Project3CalendarsRefactoring" />
+    </root>
+  </artifact>
+</component>

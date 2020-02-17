@@ -1,10 +1,20 @@
 import java.util.Scanner;
 
 public class Login {
+
+    private static Login login;
+
     private UserSet userSet;
 
-    Login(UserSet userSet){
+    private Login(UserSet userSet){
         this.userSet = userSet;
+    }
+
+    public static Login getInstance(UserSet userset){
+        if (login == null){
+            login = new Login(userset);
+        }
+        return login;
     }
 
     public static void showWelcome(){

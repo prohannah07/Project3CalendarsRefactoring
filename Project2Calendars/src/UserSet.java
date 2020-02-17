@@ -3,13 +3,21 @@ import java.util.*;
 public class UserSet {
 
     //Attributes
+    private static UserSet userSetSingleton;
 
     private ArrayList<User> userSet = new ArrayList<>();
     private User currentUser;
 
     //Constructor
 
-    public UserSet() {
+    private UserSet() {
+    }
+
+    public static UserSet getInstance(){
+        if (userSetSingleton == null){
+            userSetSingleton = new UserSet();
+        }
+        return userSetSingleton;
     }
 
     //Getter and Setters

@@ -1,15 +1,24 @@
 public class MainMenu {
 
+    private static MainMenu mainMenu;
+
     public SettingsMenu settingsMenu;
     public CalendarMenu calendarMenu;
     public EventMenu eventMenu;
     public TimerMenu timerMenu;
 
-    public MainMenu(UserSet userset){
+    private MainMenu(UserSet userset){
         this.settingsMenu = new SettingsMenu(userset);
         this.calendarMenu = new CalendarMenu(userset);
         this.eventMenu = new EventMenu(userset);
         this.timerMenu = new TimerMenu(userset);
+    }
+
+    public static MainMenu getInstance(UserSet userset){
+        if (mainMenu == null){
+            mainMenu = new MainMenu(userset);
+        }
+        return mainMenu;
     }
 
     public static void invalidCommand(){
