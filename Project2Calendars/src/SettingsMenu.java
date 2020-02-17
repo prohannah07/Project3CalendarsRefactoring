@@ -26,11 +26,11 @@ public class SettingsMenu extends Menu {
     }
 
     public void showCurrentUserConfigSettings(){
-        this.userset.getCurrentUser().getConfigScreen().show();
+        UserMenuFacade.showUserConfigSetting(this.userset);
     }
 
     public void changeTimezone(String newTz){
-        this.userset.getCurrentUser().getConfigScreen().setTimeZone(newTz);
+       UserMenuFacade.changeCurrentUserTimezone(newTz, this.userset);
     }
 
     public void changeTimezoneMenu(Scanner input){
@@ -49,9 +49,9 @@ public class SettingsMenu extends Menu {
 
     public void changeTheme(String newTheme){
         if(newTheme.equals("0")){
-            this.userset.getCurrentUser().getConfigScreen().setDarkMode(true);
+            UserMenuFacade.changeCurrentUserTheme(true, userset);
         }else{
-            this.userset.getCurrentUser().getConfigScreen().setDarkMode(false);
+            UserMenuFacade.changeCurrentUserTheme(false, userset);
         }
     }
 
@@ -59,15 +59,13 @@ public class SettingsMenu extends Menu {
         changeTheme(getNewStringSetting("Choose theme number (0: Dark OR 1: Light)", input));
     }
 
-    public void showCurrentUserConfigScreen(){
-        this.userset.getCurrentUser().getConfigScreen().show();
-    }
+//    public void showCurrentUserConfigScreen(){
+//        UserMenuFacade.showUserConfigSetting(this.userset);
+//    }
 
     public void changeCurrentUserEventsTimezone(){
-        int lenCalendars = this.userset.getCurrentUser().getCalendars().size();
-        for (int j = 0; j < lenCalendars; j++){
-            this.userset.getCurrentUser().getCalendars().get(j).updateEventTimeZones(this.userset.getCurrentUser());
-        }
+        int lenCalendars = UserMenuFacade.currentUserCalendarLen(this.userset);
+        UserMenuFacade.reflectCurrentUserTimezone(lenCalendars, this.userset);
     }
 
     public void changeTimezoneAndTheme(Scanner input){
@@ -75,7 +73,7 @@ public class SettingsMenu extends Menu {
         System.out.println("Change Settings");
         changeTimezoneMenu(input);
         changeThemeMenu(input);
-        showCurrentUserConfigScreen();
+        showCurrentUserConfigSettings();
         changeCurrentUserEventsTimezone();
     }
 

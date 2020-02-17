@@ -55,7 +55,7 @@ public class CalendarMenu extends Menu {
     }
 
     public void showHowManyCalendars(){
-        System.out.println("Currently, " + this.userset.getCurrentUser().getUserName() + " has " + this.userset.getCurrentUser().getCalendars().size() + " calendar/s");
+        UserMenuFacade.showCurrentUserFormattedCalendarLen(this.userset);
     }
 
     public void showNoCalendars(){
@@ -68,7 +68,7 @@ public class CalendarMenu extends Menu {
     public void deleteCalendar(Scanner input){
         showUserCalendars();
         int ans =  getNewIntSetting("What # Calendar would you like to remove?", input);
-        this.userset.getCurrentUser().removeCalendar(ans);
+        UserMenuFacade.removeCurrentUserCalendar(this.userset, ans);
     }
 
     public void changePrivacy(Scanner input){
@@ -76,7 +76,7 @@ public class CalendarMenu extends Menu {
         showUserCalendars();
         int ans =  getNewIntSetting("What # Calendar would you like to update its privacy?", input);
         System.out.println();
-        this.userset.getCurrentUser().changePrivateStatus(ans);
+        UserMenuFacade.changeCurrentUserPrivateStatus(ans, this.userset);
 
         showUserCalendars();
         System.out.println("Successfully Updated!");
@@ -89,7 +89,7 @@ public class CalendarMenu extends Menu {
         int ans =  getNewIntSetting("What # Calendar would you like to update its visualization?", input);
         int type =  getNewIntSetting("What kind of visualization do you want it to be?\n 1:Yearly | 2:Monthly | 3:Weekly | 4:Daily", input);
 
-        this.userset.getCurrentUser().changeVisualization(ans, type);
+        UserMenuFacade.changeCurrentUserCalendarVisualization(ans, type, this.userset);
 
         showUserCalendars();
         System.out.println("Successfully Updated!");
@@ -99,6 +99,6 @@ public class CalendarMenu extends Menu {
         System.out.println();
         showUserCalendars();
         int ans =  getNewIntSetting("What # Calendar would you like to view?", input);
-        this.userset.getCurrentUser().filterEvents(ans);
+        UserMenuFacade.viewCurrentUserSpecificCalendar(this.userset, ans);
     }
 }

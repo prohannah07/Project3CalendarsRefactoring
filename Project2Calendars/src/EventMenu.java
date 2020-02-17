@@ -72,7 +72,7 @@ public class EventMenu extends Menu {
                     title, detail, tags));
 
         }else if(i.equals("re")){
-            this.userset.getCurrentUser().showMyCalendars();
+            showUserCalendars();
 
             System.out.println("What calendar # do you want to remove an event from?");
             int calendarNum = input.nextInt();
@@ -80,15 +80,14 @@ public class EventMenu extends Menu {
 
             System.out.println();
             System.out.println("Events from Calendar# "+ calendarNum);
-            int lenEvents = this.userset.getCurrentUser().getCalendars().get(calendarNum-1).getEvents().size();
-            for (int j = 0; j < lenEvents; j++){
-                this.userset.getCurrentUser().getCalendars().get(calendarNum-1).getEvents().get(j).show();
-            }
+            int lenEvents = UserMenuFacade.showCurrentUserEventsLen(this.userset, calendarNum);
+
+            UserMenuFacade.showCurrentUserEventsFromSpecificCalendar(this.userset, calendarNum, lenEvents);
 
             System.out.println("What is the title of the event you want to delete?");
             String title = input.nextLine();
 
-            this.userset.getCurrentUser().removeEvent(calendarNum, title);
+            UserMenuFacade.removeCurrentUserEvent(this.userset,calendarNum, title);
 
         }else if(i.equals("se")){
             this.userset.getCurrentUser().showMyCalendars();
